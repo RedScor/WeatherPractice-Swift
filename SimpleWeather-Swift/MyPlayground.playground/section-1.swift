@@ -21,3 +21,25 @@ let dt = list[0]["dt"]
 //var weatherSection: AnyObject = dictionary["weather"]!
 //
 //let weatherMain = weatherSection[0]!["icon"]
+
+struct Stack<T> {
+    var elements = [T]()
+    
+    mutating func push(element: T) {
+        elements.append(element)
+    }
+    mutating func pop() -> T {
+        return elements.removeLast()
+        
+    }
+}
+
+func swapMe<T>(inout a: T, inout b: T) {
+    let temp = a
+    a = b
+    b = a
+}
+
+func swapMee<T>(inout a: T, inout b: T) {
+    (a,b) = (b,a)
+}

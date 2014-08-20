@@ -10,9 +10,9 @@ import Foundation
 
 class WeatherModel {
     
-    private let kelvin: Double
-    private let kelvinMax: Double
-    private let kelvinMin: Double
+    private let fahrenheit: Double
+    private let fahrenheitMax: Double
+    private let fahrenheitMin: Double
     let weatherMain: String
     let timeDate: NSDate
     let city: String
@@ -21,22 +21,22 @@ class WeatherModel {
 
     var celsius: Double {
         
-        return (kelvin - 32) * (5 / 9)
+        return (fahrenheit - 32) * (5 / 9)
     }
     var celsiusMax: Double {
         
-        return (kelvinMax - 32) * (5 / 9)
+        return (fahrenheitMax - 32) * (5 / 9)
     }
     var celsiusMin: Double {
         
-        return (kelvinMin - 32) * (5 / 9)
+        return (fahrenheitMin - 32) * (5 / 9)
     }
     
-    init(kelvinDegree: Double,kelvinMax: Double,kelvinMin: Double,cityName: String, iconImg:String, main:String,date:NSNumber) {
+    init(fahrenheitDegree: Double,fahrenheitMax: Double,fahrenheitMin: Double,cityName: String, iconImg:String, main:String,date:NSNumber) {
         
-        kelvin = kelvinDegree
-        self.kelvinMax = kelvinMax
-        self.kelvinMin = kelvinMin
+        fahrenheit = fahrenheitDegree
+        self.fahrenheitMax = fahrenheitMax
+        self.fahrenheitMin = fahrenheitMin
         city = cityName
         icon = iconImg
         weatherMain = main
@@ -54,14 +54,14 @@ class WeatherModel {
         var temperatureMin = mainSection["temp_min"]
         var cityName = nameSection as String
         
-        let kelvinValue = temperature as? Double
-        let kelvinValueMax = temperatureMax as? Double
-        let kelvinValueMin = temperatureMin as? Double
+        let fahrenheitValue = temperature as? Double
+        let fahrenheitValueMax = temperatureMax as? Double
+        let fahrenheitValueMin = temperatureMin as? Double
 
         let weatherMain = weatherSection[0]!["main"]
         let weathericon = weatherSection[0]!["icon"] as String
 
-        self.init(kelvinDegree: kelvinValue!,kelvinMax: kelvinValueMax!,kelvinMin: kelvinValueMin! ,cityName: cityName, iconImg: weathericon,main: weatherMain as String ,date:0)
+        self.init(fahrenheitDegree: fahrenheitValue!,fahrenheitMax: fahrenheitValueMax!,fahrenheitMin: fahrenheitValueMin! ,cityName: cityName, iconImg: weathericon,main: weatherMain as String ,date:0)
         
     }
     
@@ -84,7 +84,7 @@ class WeatherModel {
         var weatherSection: AnyObject = dailyAndHourlyTemperDict["weather"]!
         let weathericon = weatherSection[0]!["icon"] as String
         
-        self.init(kelvinDegree: day,kelvinMax: max,kelvinMin: min ,cityName: "", iconImg: weathericon,main: "" as String ,date:dt)
+        self.init(fahrenheitDegree: day,fahrenheitMax: max,fahrenheitMin: min ,cityName: "", iconImg: weathericon,main: "" as String ,date:dt)
 
     }
     

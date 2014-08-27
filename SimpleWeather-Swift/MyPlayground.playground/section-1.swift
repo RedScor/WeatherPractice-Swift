@@ -43,3 +43,7 @@ func swapMe<T>(inout a: T, inout b: T) {
 func swapMee<T>(inout a: T, inout b: T) {
     (a,b) = (b,a)
 }
+
+var aa = 3, bc = 4
+
+swapMee(&aa, &bc)
